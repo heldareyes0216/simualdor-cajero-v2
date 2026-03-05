@@ -6,7 +6,7 @@ try:
     if monto <= 0:
         print("Monto invalido.")
     elif monto > saldo:
-        print("Fonods insuficientes.")
+        print("Fondos insuficientes.")
     else:
         saldo -= monto
         movimientos.append(f"Retiro: -${monto}")

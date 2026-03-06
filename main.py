@@ -14,6 +14,9 @@ retiro = 0
 deposito = 0
 movimientos = []
 salir = False
+from datetime import datetime
+ahora = datetime.now()
+fecha_formateada = ahora.strftime("%d/%m/%Y, %H:%M:%S")
 
 def limpiar_pantalla():
  os.system('cls' if os.name == 'nt' else 'clear')
@@ -75,7 +78,7 @@ while not salir:
  print("3. Movimientos     4. Saldo")
  print("5. Salir\n")
  
- opcion = input("\nSeleccione una opcion")
+ opcion = input("\nSeleccione una opcion: ")
  limpiar_pantalla()
 
 
@@ -99,8 +102,14 @@ while not salir:
 
      
         saldo += deposito
-        movimientos.append(("Deposito", deposito)) 
-        print(f"\nDeposito realizado. Nuevo saldo: {saldo:.2f}")
+        movimientos.append(f"retiro: -${deposito}")
+
+        print("\n   ""====== COMPROBANTE ======")
+        print("Fecha y hora:", fecha_formateada)
+        print("Tipo: Deposito")
+        print(f"Monto: ${deposito}")
+        print(f"Saldo actual: ${saldo}")
+        print("Estado: APROBADO")
          
         while True:
 
@@ -148,8 +157,14 @@ while not salir:
        
      
         saldo -= retiro 
-        movimientos.append(("Retiro", retiro))
-        print(f"\nRetiro realizado. Nuevo saldo: {saldo:.2f}")
+        movimientos.append(f"retiro: -${retiro}")
+
+        print("\n   ""====== COMPROBANTE ======")
+        print("Fecha y hora:", fecha_formateada)
+        print("Tipo: retiro")
+        print(f"Monto: ${retiro}")
+        print(f"saldo actual: ${saldo}")
+        print("Estado: APROBADO")
 
         while True:
             print ("\n1. Realizar otro retiro")
@@ -179,18 +194,16 @@ while not salir:
 #---------------------------
 
  elif opcion == "3":
-    
-    if not movimientos:
-        print("\nNo se han realizado movimientos.\n")
+    if len(movimientos) == 0:
+        print("No hay movimientos realizados.\n")
 
     else:   
-        print("\n---Movimientos realizados:---") 
-        for mov in movimientos:
-            if mov [0] == "Retiro":
-                print(f"\n{mov[0]}: -{mov[1]:.2f}")
+        print("===== Movimientos realizados =====\n")
 
-            else:
-                print(f"\n{mov[0]}: +{mov[1]:.2f}") 
+        for i, movimiento in enumerate(movimientos, start=1):
+            print(f"{i}. {movimiento}") 
+
+            
 
         while True:    
             print ("\n1. Volver al menú")
@@ -199,7 +212,7 @@ while not salir:
 
             if sub == "1":
                 break
-        
+                
             elif sub == "2":
                 print("Hasta luego!")
                 salir = True

@@ -67,7 +67,7 @@ while intentos >0:
 limpiar_pantalla()
 
 #MENU
-while True:
+while not salir:
  
  print("    ""=== MENÚ===")
  print("-seleccione una operacion\n")
@@ -102,7 +102,7 @@ while True:
         movimientos.append(("Deposito", deposito)) 
         print(f"\nDeposito realizado. Nuevo saldo: {saldo:.2f}")
          
-        while not salir:
+        while True:
 
             print ("\n1. Realizar otro deposito")
             print ("2. Volver al menú")

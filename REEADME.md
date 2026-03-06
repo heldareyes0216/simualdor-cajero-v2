@@ -1,1 +1,0 @@
-# simulador cajero v2

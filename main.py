@@ -27,17 +27,17 @@ while not salir:
         barra = "█" * (i//2) #LLENARIA LA BARRA
         espacios = " " * (50 - len(barra)) #ESPACIO VACÍO   
 
-    sys.stdout.write(f"\rCargando: |{barra}{espacios}| {i}%")
-    sys.stdout.flush()
-    time.sleep(0.01)
-    limpiar_pantalla()
- 
+        sys.stdout.write(f"\rCargando: |{barra}{espacios}| {i}%")
+        sys.stdout.flush()
+        time.sleep(0.02)
+        limpiar_pantalla()
+    
     break
 
 while intentos >0:
   
-    print("      ""TECHBANK RIWI DIGITAL")
-    print("        ""-- BIENVENIDO --""\n")
+    print("      ""\033[35m\033[1mTECHBANK RIWI DIGITAL\033[0m")
+    print("        ""-- \033[33mBIENVENIDO\033[0m --""\n")
     print("    ""=== INICIO DE SESIÓN===""\n")
 
     usuario = input("Usuario: ")
@@ -46,33 +46,33 @@ while intentos >0:
     if usuario == USUARIO_CORRECTO and clave == CLAVE_CORRETA:
         print("\n ✅ \033[32mAcceso concedido\033[0m""\n")
 
-    input("\nPresione ENTER para continuar...")
-    limpiar_pantalla()
-  
-    for i in range(101):
-        barra = "█" * (i//2) #LLENARIA LA BARRA
-        espacios = " " * (50 - len(barra)) #ESPACIO VACÍO   
-
-    sys.stdout.write(f"\rCargando: |{barra}{espacios}| {i}%")
-    sys.stdout.flush()
-    time.sleep(0.01)
+        input("\nPresione ENTER para continuar...")
+        limpiar_pantalla()
     
-    break
- 
-else:
-    intentos -= 1
-    print(f"❌ \033[31mDatos incorrectos.\033[0m Intentos restantes: {intentos}\n")
+        for i in range(101):
+            barra = "█" * (i//2) #LLENARIA LA BARRA
+            espacios = " " * (50 - len(barra)) #ESPACIO VACÍO   
 
-    if intentos == 0:   
-        print("🚫 \033[31mCuenta Bloqueada\033[0m")
-    exit()
+            sys.stdout.write(f"\rCargando: |{barra}{espacios}| {i}%")
+            sys.stdout.flush()
+            time.sleep(0.01)
+        break
+    
+ 
+    else:
+        intentos -= 1
+        print(f"❌ \033[31mDatos incorrectos.\033[0m Intentos restantes: {intentos}\n")
+
+        if intentos == 0:   
+            print("🚫 \033[31mCuenta Bloqueada\033[0m")
+            exit()
 
 limpiar_pantalla()
 
 #MENU
 while not salir:
  
-    print("    ""=== MENÚ===")
+    print("       ""\033[35m=== MENÚ===\033[0m")
     print("-seleccione una operacion\n")
     print("1. Depositar       2. Retirar")
     print("3. Movimientos     4. Saldo")
@@ -97,25 +97,24 @@ while not salir:
                 continue    
          
             if deposito <=0:
-                print("Monto inválido. Ingrese un monto valido")
+                print("\033[31m❌ Monto inválido. Ingrese un monto valido\033[0m")
                 continue
 
      
             saldo += deposito
-            movimientos.append(f"retiro: -${deposito}")
+            movimientos.append(f"deposito: +${deposito}")
 
-            print("\n   ""====== COMPROBANTE ======")
+            print("\n   ""\033[35m====== COMPROBANTE ======\033[0m")
             print("Fecha y hora:", fecha_formateada)
             print("Tipo: Deposito")
             print(f"Monto: ${deposito}")
             print(f"Saldo actual: ${saldo}")
-            print("Estado: APROBADO")
+            print("Estado:\033[32m ✅ APROBADO\033[0m\n")
          
             while True:
 
-                print ("\n1. Realizar otro deposito")
-                print ("2. Volver al menú")
-                print ("3. Salir\n")
+                print ("\033[36m1. Realizar otro deposito\033[0m\n")
+                print ("\033[33m2. Volver al menú     \033[31m3. Salir\033[0m\n")
                 sub= input("Seleccione una opción:\n ")
 
                 if sub == "1":
@@ -125,12 +124,12 @@ while not salir:
                     break
 
                 elif sub == "3":
-                    print("Hasta luego!")
+                    print("\033[33m👋 ¡Hasta luego!\033[0m")
                     salir = True
                     break
 
                 else:
-                    print("Opción no válida. Por favor, seleccione una opción del menú.\n")
+                    print("\033[31m❌ Opción no válida. Por favor, seleccione una opción del menú.\033[0m\n")
 
             if salir or sub == "2":
                 break
@@ -148,11 +147,11 @@ while not salir:
                 continue
                 
             if retiro <= 0:
-                print("Monto inválido. Ingrese un monto válido.")
+                print("\033[31m❌ Monto inválido. Ingrese un monto válido.\033[0m")
                 continue
 
             elif retiro > saldo:
-                print("Fondos insuficientes.")
+                print("\033[31m❌ Fondos insuficientes.\033[0m")
                 continue
        
      
@@ -164,12 +163,11 @@ while not salir:
             print("Tipo: retiro")
             print(f"Monto: ${retiro}")
             print(f"saldo actual: ${saldo}")
-            print("Estado: APROBADO")
+            print("Estado: \033[32m ✅ APROBADO\033[0m")
 
             while True:
-                print ("\n1. Realizar otro retiro")
-                print ("2. Volver al menú")
-                print ("3. Salir\n")   
+                print ("\033[36m1. Realizar otro deposito\033[0m\n")
+                print ("\033[33m2. Volver al menú     \033[31m3. Salir\033[0m\n")   
                 sub= input("Seleccione una opción:\n")
 
                 if sub =="1":
@@ -179,12 +177,12 @@ while not salir:
                     break
 
                 elif sub == "3":
-                    print("Hasta luego!")
+                    print("\033[33m👋 ¡Hasta luego!\033[0m")
                     salir = True
                     break
 
                 else:
-                    print("Opción no válida. Por favor, seleccione una opción del menú.\n")
+                    print("\033[31m❌ Opción no válida. Por favor, seleccione una opción del menú.\033[0m\n")
             
             if salir or sub == "2":
                 break    
@@ -195,10 +193,10 @@ while not salir:
 
     elif opcion == "3":
         if len(movimientos) == 0:
-            print("No hay movimientos realizados.\n")
+            print("\033[31m❌ No hay movimientos realizados.\033[0m\n")
 
         else:   
-            print("===== Movimientos realizados =====\n")
+            print("\033[35m===== Movimientos realizados =====\033[0m\n")
 
             for i, movimiento in enumerate(movimientos, start=1):
                 print(f"{i}. {movimiento}") 
@@ -206,20 +204,19 @@ while not salir:
             
 
             while True:    
-                print ("\n1. Volver al menú")
-                print ("2. Salir\n")
+                print ("\033[33m1. Volver al menú     \033[31m2. Salir\033[0m\n") 
                 sub= input("Seleccione una opción:\n")
 
                 if sub == "1":
                     break
                 
                 elif sub == "2":
-                    print("Hasta luego!")
+                    print("\033[33m👋 ¡Hasta luego!\033[0m")
                     salir = True
                     break
 
                 else:
-                    print("Opción no válida. Por favor, seleccione una opción del menú.\n")
+                    print("\033[31m❌ Opción no válida. Por favor, seleccione una opción del menú.\033[0m\n")
 
 #---------------------------
 # Opcion 4: Ver saldo
@@ -227,12 +224,11 @@ while not salir:
     
     elif opcion == "4":
         print(f"\nSu saldo actual es: {saldo:.2f}")
-        print ("\n1. Volver al menú")
-        print ("2. Salir\n")
+        print ("\033[33m1. Volver al menú     \033[31m2. Salir\033[0m\n") 
         sub= input("Seleccione una opción:\n")
 
         if sub == "2":
-            print("Hasta luego!")
+            print("\033[33m👋 ¡Hasta luego!\033[0m")
             salir= True
 
 #---------------------------
@@ -240,7 +236,7 @@ while not salir:
 #---------------------------
 
     elif opcion == "5":
-        print("Hasta luego!")
+        print("\033[33m👋 ¡Hasta luego!\033[0m")
         salir = True    
         break  
 
@@ -249,5 +245,5 @@ while not salir:
 #---------------------------
 
     else:
-        print("Opción no válida. Por favor, seleccione una opción del menú.\n")    
+        print("\033[31m❌ Opción no válida. Por favor, seleccione una opción del menú.\033[0m\n")    
 

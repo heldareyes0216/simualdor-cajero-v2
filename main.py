@@ -18,7 +18,6 @@ import saldo
 USUARIO_CORRECTO = "1234"
 CLAVE_CORRETA = "2711"
 intentos = 4
-retiro = 0
 movimientos = []
 salir = False
 from datetime import datetime

@@ -10,7 +10,10 @@ from clean import limpiar_pantalla
 from barra import barra
 from deposito import deposito
 from retiro import retiro
+from ver_movimientos import ver_movimientos
+from ver_saldo import ver_saldo
 import saldo
+
 
 
 #Inicio del sistema
@@ -83,59 +86,32 @@ while not salir:
 #---------------------------
 
     if opcion == "1":
-
-        deposito(movimientos)
+        if deposito(movimientos):
+            salir = True
 
 #---------------------------
 # Opcion 2: Retirar dinero
 #---------------------------
 
     elif opcion == "2":
-        retiro(movimientos)    
+        if retiro(movimientos):
+            salir = True 
 
 #---------------------------
 # Opcion 3: Ver movimientos
 #---------------------------
 
     elif opcion == "3":
-        if len(movimientos) == 0:
-            print("\033[31m❌ No hay movimientos realizados.\033[0m\n")
-
-        else:   
-            print("\033[35m===== Movimientos realizados =====\033[0m\n")
-
-            for i, movimiento in enumerate(movimientos, start=1):
-                print(f"{i}. {movimiento}") 
-
-            
-
-            while True:    
-                print ("\033[33m1. Volver al menú     \033[31m2. Salir\033[0m\n") 
-                sub= input("Seleccione una opción:\n")
-
-                if sub == "1":
-                    break
-                
-                elif sub == "2":
-                    print("\033[33m👋 ¡Hasta luego!\033[0m")
-                    salir = True
-                    break
-
-                else:
-                    print("\033[31m❌ Opción no válida. Por favor, seleccione una opción del menú.\033[0m\n")
+        if ver_movimientos(movimientos):
+            salir = True 
 
 #---------------------------
 # Opcion 4: Ver saldo
 # ---------------------------  
     
     elif opcion == "4":
-        print(f"\nSu saldo actual es: {saldo.value:.2f}")
-        print ("\033[33m1. Volver al menú     \033[31m2. Salir\033[0m\n") 
-        sub= input("Seleccione una opción:\n")
-
-        if sub == "2":
-            print("\033[33m👋 ¡Hasta luego!\033[0m")
-            salir= True
+        if ver_saldo(saldo):
+            salir = True
 
 #---------------------------
 # Opcion 5: Salir

@@ -1,10 +1,8 @@
 from comprobante import comprobante
 import saldo
-salir = False
 
 def retiro(movimientos):
     
-    global salir
     while True:
         try:
             retiro = float(input("Ingrese el monto a retirar:\n"))
@@ -26,7 +24,7 @@ def retiro(movimientos):
         comprobante("retiro", retiro, saldo.value)
 
         while True:
-            print ("\033[36m1. Realizar otro deposito\033[0m\n")
+            print ("\033[36m1. Realizar otro retiro\033[0m\n")
             print ("\033[33m2. Volver al menú\033[0m\n")
             print ("\033[31m3. Salir\033[0m\n")
             sub= input("Seleccione una opción:\n")
@@ -35,16 +33,11 @@ def retiro(movimientos):
                 break
 
             elif sub == "2":
-               break
+                return False
 
             elif sub == "3":
                 print("\033[33m👋 ¡Hasta luego!\033[0m")
-                salir = True
-                break
+                return True
 
             else:
                 print("\033[31m❌ Opción no válida. Por favor, seleccione una opción del menú.\033[0m\n")
-    
-        
-        if salir or sub == "2":
-            break 

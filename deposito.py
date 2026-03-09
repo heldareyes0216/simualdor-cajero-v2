@@ -1,9 +1,7 @@
 from comprobante import comprobante
 import saldo
-salir = False
 
 def deposito(movimientos):
-    global salir
     while True:
         try:
             deposito = float(input("Ingrese el monto a depositar:\n"))
@@ -32,15 +30,11 @@ def deposito(movimientos):
                 break
 
             elif sub == "2":
-                break
+                return False
 
             elif sub == "3":
                 print("\033[33m👋 ¡Hasta luego!\033[0m")
-                salir = True
-                break
-
+                return True
+               
             else:
-                print("\033[31m❌ Opción no válida. Por favor, seleccione una opción del menú.\033[0m\n")
-
-        if salir or sub == "2":
-            break                    
+                print("\033[31m❌ Opción no válida. Por favor, seleccione una opción del menú.\033[0m\n")                  
